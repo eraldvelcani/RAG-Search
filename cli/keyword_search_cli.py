@@ -37,8 +37,8 @@ def main() -> None:
         tokenized_query = list(filter(None, cleaned_query.split()))
         tokenized_title = list(filter(None, cleaned_movie_title.split()))
         
-        stopwordless_query = [w for w in tokenized_query if w not in stopwords_list]
-        stopwordless_title = [w for w in tokenized_title if w not in stopwords_list]
+        stopwordless_query = [stemmer.stem(w) for w in tokenized_query if w not in stopwords_list]
+        stopwordless_title = [stemmer.stem(w) for w in tokenized_title if w not in stopwords_list]
 
         if any(q in t for q in stopwordless_query for t in stopwordless_title):
             new_dict[movie['title']] = movie
